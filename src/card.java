@@ -29,7 +29,7 @@ public class card {
         return speed;
     }
 
-    public void brawl(card enemy) {
+    public void brawl(card enemy) throws InterruptedException {
         int health = this.getHealth();
         int enemyHealth = enemy.getHealth();
         int damage = this.getAttack();
@@ -39,17 +39,19 @@ public class card {
         boolean check = true;
 
             if (this.getSpeed() > enemy.getSpeed()) {
-                System.out.println("You have " + speed + " speed. You go first.");
+                System.out.println(this.getName() + " has " + speed + " speed. You go first.");
                 while (check == true) {
                     int enemyTempHp = enemy.getHealth();
                     int youTempHp = this.getHealth();
                     enemy.setHealth(enemyTempHp - damage);
                     if (enemy.getHealth() < 1) {
                         System.out.println(this.getName() + " dealt " + damage + " damage" + "\n" + enemy.getName() + " has died.");
+                        Thread.sleep(2000);
                         check = false;
                         System.exit(0);
                     } else {
                         System.out.println(this.getName() + " dealt " + damage + " damage" + "\n" + enemy.getName() + " has " + enemy.getHealth() + " health.");
+                        Thread.sleep(2000);
                         this.setHealth(youTempHp - enemyDamage);
                         if (this.getHealth() < 1) {
                             System.out.println(enemy.getName() + " dealt " + enemyDamage + " damage" + "\n" + this.getName() + " has died.");
@@ -58,6 +60,7 @@ public class card {
                         }
                         else {
                             System.out.println(enemy.getName() + " dealt " + enemyDamage + " damage" + "\n" + this.getName() + " has " + this.getHealth() + " health.");
+                            Thread.sleep(2000);
                         }
                     }
                 }
@@ -73,6 +76,7 @@ public class card {
                         System.exit(0);
                     } else {
                         System.out.println(enemy.getName() + " dealt " + enemyDamage + " damage" + "\n" + this.getName() + " has " + this.getHealth() + " health.");
+                        Thread.sleep(2000);
                         enemy.setHealth(enemyTempHp - damage);
                         if (enemy.getHealth() < 1) {
                             System.out.println(this.getName() + " dealt " + damage + " damage" + "\n" + enemy.getName() + " has died.");
@@ -81,6 +85,7 @@ public class card {
                         }
                         else {
                             System.out.println(this.getName() + " dealt " + damage + " damage" + "\n" + enemy.getName() + " has " + enemy.getHealth() + " health.");
+                            Thread.sleep(2000);
                         }
                     }
                 }
